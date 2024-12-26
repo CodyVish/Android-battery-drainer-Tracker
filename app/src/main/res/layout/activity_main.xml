@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_grey_300"
+    tools:context=".ui.MainActivity"
+    tools:ignore="RtlHardcoded">
+
+    <!--region Toolbar-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="8dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/container_battery_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/iv_about"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/margin_label_side"
+            android:clickable="true"
+            android:contentDescription="@string/about_app_button"
+            android:focusable="true"
+            android:src="@drawable/ic_help_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_toolbar_title"
+            app:layout_constraintDimensionRatio="W, 1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_toolbar_title"
+            />
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/iv_settings"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="@dimen/margin_label_side"
+            android:clickable="true"
+            android:contentDescription="@string/cd_settings_button"
+            android:focusable="true"
+            android:src="@drawable/ic_settings_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_toolbar_title"
+            app:layout_constraintDimensionRatio="W, 1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_toolbar_title"
+            />
+    </android.support.constraint.ConstraintLayout>
+    <!--endregion-->
+
+    <!--region Battery Status Display-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_battery_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_card"
+        android:background="@drawable/card_background"
+        android:elevation="4dp"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_main"
+        >
+        <!--region Guidelines-->
+        <android.support.constraint.Guideline
+            android:id="@+id/gl33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gl66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66"
+            />
+        <!--endregion-->
+
+        <!--region Battery Percentage-->
+        <TextView
+            android:id="@+id/tv_battery_percentage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/level_label"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/gl33"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_battery_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/updating"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/gl33"
+            app:layout_constraintTop_toBottomOf="@id/tv_battery_percentage_label"
+            />
+        <!--endregion-->
+
+        <!--region Battery Temp-->
+        <TextView
+            android:id="@+id/tv_battery_temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperature_label"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl33"
+            app:layout_constraintRight_toLeftOf="@id/gl66"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_battery_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/updating"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/gl33"
+            app:layout_constraintRight_toLeftOf="@id/gl66"
+            app:layout_constraintTop_toBottomOf="@id/tv_battery_temp_label"
+            />
+        <!--endregion-->
+
+        <!--region Battery Voltage-->
+        <TextView
+            android:id="@+id/tv_batteryVoltage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/voltage_label"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/gl66"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_battery_voltage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/updating"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/gl66"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_batteryVoltage_label"
+            />
+        <!--endregion-->
+
+    </android.support.constraint.ConstraintLayout>
+    <!--endregion-->
+
+    <ScrollView
+        android:id="@+id/scrollContainer_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_card"
+        android:background="@drawable/card_background"
+        android:elevation="4dp"
+        android:fadeScrollbars="false"
+        android:scrollbarThumbVertical="@color/colorAccent"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@id/tv_start"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_battery_info"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <!--region Flash-->
+            <TextView
+                android:id="@+id/tv_title_flash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/flash"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_flash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/flash_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_flash"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_flash"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_flash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_flash"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_flash"
+                />
+            <!--endregion-->
+
+            <!--region Screen-->
+
+            <TextView
+                android:id="@+id/tv_title_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/screen"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_flash"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/screen_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_screen"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_screen"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_screen"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_screen"
+                />
+            <!--endregion-->
+
+            <!--region CPU-->
+
+            <TextView
+                android:id="@+id/tv_title_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/tax_cpu"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_screen"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/cpu_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_cpu"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_cpu"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_cpu"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_cpu"
+                />
+            <!--endregion-->
+
+            <!--region GPU-->
+
+            <TextView
+                android:id="@+id/tv_title_gpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/tax_gpu"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_cpu"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_gpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/gpu_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_gpu"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_gpu"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_gpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_gpu"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_gpu"
+                />
+            <!--endregion-->
+
+            <!--region GPS-->
+
+            <TextView
+                android:id="@+id/tv_title_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/poll_gps"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_gpu"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/gps_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_gps"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_gps"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_gps"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_gps"
+                />
+            <!--endregion-->
+
+            <!--region WiFi-->
+
+            <TextView
+                android:id="@+id/tv_title_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/poll_wifi"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_gps"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/wifi_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_wifi"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_wifi"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_wifi"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_wifi"
+                />
+            <!--endregion-->
+
+            <!--region Bluetooth-->
+
+            <TextView
+                android:id="@+id/tv_title_bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/scan_bluetooth"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_wifi"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/bluetooth_sublabel"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_bluetooth" />
+
+            <View
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/margin_label_side"
+            android:layout_marginRight="@dimen/switch_button_side"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle_bluetooth"
+            />
+
+
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_bluetooth"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_bluetooth"
+                />
+
+
+            <!-- High-Resolution Video Playback -->
+            <TextView
+                android:id="@+id/tv_title_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/play_video"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_bluetooth"
+                />
+
+            <TextView
+                android:id="@+id/tv_subtitle_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/play_video_description"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_video"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <View
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_video"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_play_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_video"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_video"/>
+
+            <!-- Open Multiple Apps -->
+            <TextView
+                android:id="@+id/tv_title_open_apps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/open_apps"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_video"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_subtitle_open_apps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/open_apps_description"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_open_apps"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <View
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_open_apps"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_open_apps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_open_apps"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_open_apps"/>
+
+            <!-- Camera and Flashlight Control -->
+            <TextView
+                android:id="@+id/tv_title_record_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/record_video"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_open_apps"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_subtitle_record_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/record_video_description"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_record_video"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <View
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_record_video"
+                />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_record_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_record_video"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_record_video"/>
+
+            <!-- Vibration Mode -->
+            <TextView
+                android:id="@+id/tv_title_vibration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_label_top"
+                android:text="@string/vibration_mode"
+                android:textSize="@dimen/switch_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_record_video"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_subtitle_vibration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginTop="@dimen/margin_sublabel_top"
+                android:text="@string/vibration_mode_description"
+                android:textSize="@dimen/switch_subtitle_text_size"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_vibration"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <!--
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_vibration"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            -->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_label_top"
+                android:layout_marginLeft="@dimen/margin_label_side"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:layout_marginTop="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_vibration"
+                />
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_vibration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/switch_button_side"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_vibration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_vibration"/>
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_shape_green"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="4dp"
+        android:stateListAnimator="@animator/animator_elevation"
+        android:text="@string/start"
+        android:textColor="@color/material_green_400"
+        android:textSize="@dimen/start_button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollContainer_main"
+        />
+
+
+</android.support.constraint.ConstraintLayout>
